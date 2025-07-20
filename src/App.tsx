@@ -1,35 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Button from "./components/Button";
+import useDarkMode from "./hooks/useDarkMode";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const [darkMode, setDarkMode] = useDarkMode();
+  const handleTheme = () => {
+    setDarkMode((prevTheme: boolean) => !prevTheme)
+  }
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="min-h-screen dark:bg-slate-950 flex justify-center items-center">
+       <div className="w-full p-2 max-w-80 rounded-md border border-slate-300 dark:border-slate-800 dark:bg-slate-900 flex flex-col gap-y-2">
+          <Button className="rounded-md p-2 bg-slate-950 w-full text-slate-200 dark:text-slate-950 dark:bg-slate-200" onClick={handleTheme}>Toggle Theme</Button>
+        </div>
+    </div>
   )
-}
+};
 
-export default App
+export default App;
